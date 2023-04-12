@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Quantidade de takes:
+    <input id="input_qtd_takes">
+    <br>
+
+    Vezes em que o padrão 2 se repete:
+    <input id="input_rep_nah">
+    <br>
+
+    <button onclick="simular()">Simular</button>
+    
+    <div id="div_takes">
+
+    </div>
+
+    <div id="div_imagem">
+
+    </div>
+</body>
+</html>
+
+<script>
+    
+    function simular() {
+        div_takes.innerHTML = "";
+        div_imagem.innerHTML = "";
+
+        var qtd_takes = Number(input_qtd_takes.value);
+        var rep_nah = Number(input_rep_nah.value);
+        
+        var nah_padrao1 = "Nah";
+        var nah_padrao2 = "";
+        
+        var Total_takes = 0;
+        var linha_nah_takes = 1;
+        
+        // NAH PADRAO1
+        for(i = 1; i < 9; i++){
+            nah_padrao1 += ",nah";
+        }
+            
+        // NAH PADRAO2
+        for(i = 1; i <= rep_nah; i++){
+            linha_nah_takes ++;
+            nah_padrao2 += `${nah_padrao1} <br>`;
+        }
+
+        // LOOP DOS TAKES
+        for (i = 1; i <= qtd_takes; i++) {
+            Total_takes ++;
+            if(i%2 == 0) {
+                var style = `<span style="color: blue;">`;
+            }else {
+                var style = `<span style="color: red;">`;
+            }
+            div_takes.innerHTML += `<br><h3>Take ${i}</h3><br>`
+            div_takes.innerHTML += `
+            Hey, Jude, don't make it bad<br>
+            Take a sad song and make it better<br>
+            Remember to let her into your heart<br>
+            Then you can start to make it better<br>
+            Hey, Jude, don't be afraid<br>
+            You were made to go out and get her<br>
+            The minute you let her under your skin<br>
+            Then you begin to make it better<br>
+            And anytime you feel the pain, Hey, Jude, refrain<br>
+            Don't carry the world upon your shoulders<br>
+            For well you know that it's a fool<br>
+            Who plays it cool<br>
+            By making his world a little colder<br>
+            ${style}<b>${nah_padrao1}</b></span>, Hey, Jude, don't let me down<br>
+            You have found her, now go and get her<br>
+            Remember to let her into your heart<br>
+            Then you can start to make it better<br>
+            So let it out and let it in, Hey, Jude, begin<br>
+            You're waiting for someone to perform with<br>
+            And don't you know that it's just you, Hey, Jude, you'll do<br>
+            The movement you need is on your shoulder<br>
+            ${style}<b>${nah_padrao1}</b></span> Hey, Jude, don't make it bad<br>
+            Take a sad song and make it better<br>
+            Remember to let her under your skin<br>
+            Then you'll begin to make it better, better, better, better, better... oh!<br>
+            ${style}<b>${nah_padrao2}</b></span>, Hey, Jude`;
+        }
+        // MEDIA DE NAH POR TAKE
+        var qtd_nah = (linha_nah_takes * 9) * Total_takes;
+        var media_nah_take =  qtd_nah/Total_takes ;         
+
+        div_takes.innerHTML += `
+        <br>
+        Quantidade total de Takes: ${Total_takes}<br>
+        Média de "Nah" por Take: ${media_nah_take} <br>
+        Quantidade total de "Nah" somada em todos os Takes: ${qtd_nah}
+        `
+        if(qtd_nah <= 487) {
+            div_imagem.innerHTML = `<br> <img src="./assets/beatles_felizes.png" alt="">`;
+        }
+        else if (qtd_nah == 648 || qtd_nah == 810) {
+            div_imagem.innerHTML = `<br> <img src="./assets/beatles_medio.jpeg" alt="">`;
+        }
+        else {
+            div_imagem.innerHTML = `<br> <img src="./assets/beatles_desanimados.jpg" alt="">`;
+        }
+    }
+
+</script>
